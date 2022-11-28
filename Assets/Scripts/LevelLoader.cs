@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public void LoadScene(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Player")){
-            LoadScene();
+        if(SceneManager.GetActiveScene().buildIndex == 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        }else{
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+    public void LoadSpecificScene(string scene){
+        SceneManager.LoadScene(scene);
     }
 }

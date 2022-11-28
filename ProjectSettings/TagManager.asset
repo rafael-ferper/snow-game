@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ladder
+  - Enemy
+  - FallDetector
+  - Checkpoint
+  - Ice
+  - BulletBoss1
+  - ButtonMute
+  - Boss1
+  - Foreground
   layers:
   - Default
   - TransparentFX
@@ -57,6 +65,6 @@ TagManager:
   - name: Enemy
     uniqueID: 3384002113
     locked: 0
-  - name: Coin
+  - name: Flame
     uniqueID: 480934733
     locked: 0

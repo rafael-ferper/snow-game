@@ -10,11 +10,11 @@ public class Score : MonoBehaviour
     void Start()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
+        textMeshPro.text = GameSession.totalScore.ToString();
     }
 
     public void AddScore(int score = 1){
-        int currentScore = int.Parse(textMeshPro.text);
-        currentScore+=score;
-        textMeshPro.text = currentScore.ToString();
+        GameSession.totalScore+=score;
+        textMeshPro.text = GameSession.totalScore.ToString();
     }
 }

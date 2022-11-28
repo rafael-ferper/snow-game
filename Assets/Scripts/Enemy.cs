@@ -7,14 +7,22 @@ public class Enemy : MonoBehaviour
     
     Rigidbody2D enemyRb;
     Score score;
+    HealthBar healthBar;
 
     [SerializeField]
     float enemyVelocidade;
+
+    [SerializeField]
+    float enemyDamage;
     // Start is called before the first frame update
+
+    void Awake(){
+        healthBar = FindObjectOfType<HealthBar> ();
+    }
+
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
-        enemyVelocidade = transform.localScale.x;
         score = FindObjectOfType<Score>();
     }
 
@@ -32,9 +40,27 @@ public class Enemy : MonoBehaviour
         transform.localScale = new Vector2(-Mathf.Sign(enemyRb.velocity.x),1); 
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        enemyVelocidade = -enemyVelocidade;
-        FlipSprite();
+    void OnTriggerExit2D(Collider2D collision) {
+       if(collision.gameObject.tag == ("Foreground")){
+            enemyVelocidade = -enemyVelocidade;
+            FlipSprite();
+       }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            if(col.collider as BoxCollider2D)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                healthBar.Damage(enemyDamage);
+                col.gameObject.GetComponent<Player>().InitDamageAnimation(true);
+            }
+        }
     }
 
     
