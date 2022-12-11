@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
         {
             audioSliderVolume = FindObjectOfType<Slider>();
             audioSliderVolume.value = audioSourceBG.volume;
-            audioSliderVolume.onValueChanged.AddListener(delegate { OnSliderValueChanged();});
+            audioSliderVolume.onValueChanged.AddListener(delegate {OnSliderValueChanged();});
 
             btnMute = GameObject.FindGameObjectWithTag("ButtonMute");
             buttonCurrentSpriteIndex = audioSourceBG.volume == 0 ? 0 : 1;
